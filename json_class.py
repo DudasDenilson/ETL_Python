@@ -45,5 +45,5 @@ url = 'https://demo4417994.mockable.io/clientes/'
 
 url1 = '/home/denilson/clientes.json'
 
-get_local_json(url1)
-get_online_json(url)
+#print(get_local_json(url1))
+print(get_online_json(url))
