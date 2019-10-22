@@ -1,5 +1,5 @@
 import pandas as pd
-#from pandas import DataFrame
+from pandas import DataFrame
 from datetime import datetime, timedelta
 
 
@@ -41,20 +41,22 @@ def data_treatment(csv_data):
     return list_data_treat
 
 
-#def write_csv(lista_dict_origem, caminho_csv_destino):
-#    data = import_csv(lista_dict_origem)
-#    listadados = data_treatment(data)
-#    df = DataFrame(listadados, columns=['id_cliente', 'data', 'valor_total', 'plano', 'meses', 'valor_mes'])
-#    export_csv = df.to_csv(caminho_csv_destino, index=None, header=True)
+def write_csv(lista_dict_origem, caminho_csv_destino):
+    colunas = lista_dict_origem[0].keys()
+    array_colunas=[]
+    for r in colunas:
+        array_colunas.append(r)
+    df = DataFrame(lista_dict_origem, columns=array_colunas)
+    export_csv = df.to_csv(caminho_csv_destino, index=None, header=True)
 
 
-#url = 'https://doc-08-3o-docs.googleusercontent.com/docs/securesc/itgof2bk0rq38g93e3k3bbkt36b80r5j/bukdvqqreor3faj6mco62fgk5cbu3mcn/1571716800000/04105005953058485704/02359347683867043271/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw?e=download'
-local = '/home/denilson/Downloads/pagamento.csv'
-data = import_csv(local)
-listadados = data_treatment(data)
-print(listadados)
+#url = 'https://doc-08-3o-docs.googleusercontent.com/docs/securesc/itgof2bk0rq38g93e3k3bbkt36b80r5j/bidrdkamhm6200497ij5l9kaj7ft727s/1571745600000/04105005953058485704/02359347683867043271/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw?e=download&nonce=vba8gnpevikbi&user=02359347683867043271&hash=qmpgj9rs4ofuunf0d332dn673f69dfck'
+#local = '/home/denilson/Downloads/pagamento.csv'
+#data = import_csv(local)
+#listadados = data_treatment(data)
+#print(listadados)
 #destino = '/home/denilson/export_datafram.csv'
-#write_csv(local, destino)
+#write_csv(listadados, destino)
 
 
 
