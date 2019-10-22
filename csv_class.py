@@ -43,6 +43,11 @@ def data_treatment(csv_data):
         list_data_treat.append(treat_data)
     return list_data_treat
 
+
+def write_csv():
+    print()
+
+
 url = 'https://doc-0c-68-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/g5globpfkhe1iqgu865sj11mn13ec05v/1571623200000/04105005953058485704/*/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw?e=download'
 local = '/home/denilson/Downloads/pagamentos.csv'
 data = import_csv(local)
