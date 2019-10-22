@@ -1,15 +1,11 @@
 import pandas as pd
-from pandas import DataFrame
+#from pandas import DataFrame
 from datetime import datetime, timedelta
 
 
 # funcao responsavel pela leitura do arquivo csv
 def import_csv(url_local):
-    try:
-        data = pd.read_csv(url_local, sep=",", encoding='utf-8', quotechar='"', decimal='.')
-    except:
-        print("Falha na leitura do arquivo csv")
-
+    data = pd.read_csv(url_local, sep=",")
     return data
 
 
@@ -45,20 +41,20 @@ def data_treatment(csv_data):
     return list_data_treat
 
 
-def write_csv(lista_dict_origem, caminho_csv_destino):
-    data = import_csv(lista_dict_origem)
-    listadados = data_treatment(data)
-    df = DataFrame(listadados, columns=['id_cliente', 'data', 'valor_total', 'plano', 'meses', 'valor_mes'])
-    export_csv = df.to_csv(caminho_csv_destino, index=None, header=True)
+#def write_csv(lista_dict_origem, caminho_csv_destino):
+#    data = import_csv(lista_dict_origem)
+#    listadados = data_treatment(data)
+#    df = DataFrame(listadados, columns=['id_cliente', 'data', 'valor_total', 'plano', 'meses', 'valor_mes'])
+#    export_csv = df.to_csv(caminho_csv_destino, index=None, header=True)
 
 
-url = 'https://doc-0c-68-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/g5globpfkhe1iqgu865sj11mn13ec05v/1571623200000/04105005953058485704/*/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw?e=download'
-local = '/home/denilson/Downloads/pagamentos.csv'
+#url = 'https://doc-08-3o-docs.googleusercontent.com/docs/securesc/itgof2bk0rq38g93e3k3bbkt36b80r5j/bukdvqqreor3faj6mco62fgk5cbu3mcn/1571716800000/04105005953058485704/02359347683867043271/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw?e=download'
+local = '/home/denilson/Downloads/pagamento.csv'
 data = import_csv(local)
 listadados = data_treatment(data)
 print(listadados)
-destino = '/home/denilson/export_datafram.csv'
-write_csv(local, destino)
+#destino = '/home/denilson/export_datafram.csv'
+#write_csv(local, destino)
 
 
 

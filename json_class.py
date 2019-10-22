@@ -41,9 +41,9 @@ def get_local_json(caminho):
     return list_data_treat
 
 
-url = 'https://demo4417994.mockable.io/clientes/'
+#url = 'https://demo4417994.mockable.io/clientes/'
 
-url1 = '/home/denilson/clientes.json'
+#url1 = '/home/denilson/clientes.json'
 
 #print(get_local_json(url1))
-print(get_online_json(url))
+#print(get_online_json(url))
