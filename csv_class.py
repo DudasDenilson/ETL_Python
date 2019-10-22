@@ -1,6 +1,7 @@
 import pandas as pd
 from pandas import DataFrame
-from datetime import datetime, timedelta
+from dateutil.relativedelta import relativedelta
+from datetime import datetime, timedelta, date
 
 
 # funcao responsavel pela leitura do arquivo csv
@@ -27,6 +28,11 @@ def data_treatment(csv_data):
         val_convertido = valor[2:].strip()
         val = float(val_convertido) / int(mes)
 
+        # Calculo de data mes final do pagamento
+        date_str = line[1]
+        data_final = datetime.strptime(date_str, '%d/%m/%Y').date()
+        data_final = (data_final + relativedelta(months=int(mes)))
+
         # Criação de uma lista com dicionarios de todos os pagamentos
 
         treat_data = {
@@ -35,7 +41,8 @@ def data_treatment(csv_data):
             'valor_total': val_convertido,
             'plano': plano,
             'meses': mes,
-            'valor_mes': val
+            'valor_mes': val,
+            'data_final_pag': data_final
         }
         list_data_treat.append(treat_data)
     return list_data_treat

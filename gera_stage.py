@@ -27,7 +27,8 @@ for r_csv in listadados:
                 'empresa_nome' : r_json["nome"],
                 'cidade':r_json["cidade"],
                 'estado':r_json["estado"],
-                'segmento':r_json["segmento"]
+                'segmento':r_json["segmento"],
+                'data_pagamento_fim': r_csv["data_final_pag"]
             }
             list_data_treat.append(treat_data)
 
