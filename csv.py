@@ -4,7 +4,11 @@ from datetime import datetime, timedelta
 
 # funcao responsavel pela leitura do arquivo csv
 def import_csv(url_local):
-    data = pd.read_csv(url_local, sep=",", encoding='utf-8', quotechar='"', decimal='.')
+    try:
+        data = pd.read_csv(url_local, sep=",", encoding='utf-8', quotechar='"', decimal='.')
+    except:
+        print("Falha na leitura do arquivo csv")
+
     return data
 
 
