@@ -1,4 +1,5 @@
 import pandas as pd
+from pandas import DataFrame
 from datetime import datetime, timedelta
 
 
@@ -44,8 +45,11 @@ def data_treatment(csv_data):
     return list_data_treat
 
 
-def write_csv():
-    print()
+def write_csv(lista_dict_origem, caminho_csv_destino):
+    data = import_csv(lista_dict_origem)
+    listadados = data_treatment(data)
+    df = DataFrame(listadados, columns=['id_cliente', 'data', 'valor_total', 'plano', 'meses', 'valor_mes'])
+    export_csv = df.to_csv(caminho_csv_destino, index=None, header=True)
 
 
 url = 'https://doc-0c-68-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/g5globpfkhe1iqgu865sj11mn13ec05v/1571623200000/04105005953058485704/*/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw?e=download'
@@ -53,6 +57,10 @@ local = '/home/denilson/Downloads/pagamentos.csv'
 data = import_csv(local)
 listadados = data_treatment(data)
 print(listadados)
+destino = '/home/denilson/export_datafram.csv'
+write_csv(local, destino)
+
+
 
 
 
