@@ -5,15 +5,13 @@ credentials = service_account.Credentials.from_service_account_file('/home/denil
 project_id = 'projeto1-256320'
 client = bigquery.Client(credentials=credentials, project=project_id)
 
-print(client)
+query = 'SELECT *  FROM PR.STAGE_PAGAMENTOS  LIMIT 1'
 
-query_job = client.query("""
-  SELECT *
-  FROM PR.PAGAMENTOS
-  LIMIT 1""")
+
+query_job = client.query(query, project=project_id)
 results = query_job.result()
 
 for row in results:
-    print("{} : {} ".format(row.ID_CLIENTE, row.PLANO))
+    print(row)
 
 
