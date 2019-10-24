@@ -11,8 +11,12 @@ print('Date:', date_time_obj.date())
 print('Time:', date_time_obj.time())
 print('Date-time:', date_time_obj)
 timestampobj = datetime.timestamp(date_time_obj)
+meses=5
 
 print('timestamp:', timestampobj)
+
+for x in range(meses):
+    print(x)
 
 # current date and time
 # now = datetime.now()

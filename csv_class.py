@@ -22,6 +22,7 @@ def data_treatment(csv_data):
 
         # Busca os dados de quantos meses foram pagos
         mes = fullplano[len(fullplano) - 1:]
+        mes = int(mes)
 
         # Calculo de valor do produto
         valor = line[2].replace(',', '.').replace(' ', '')
@@ -31,20 +32,37 @@ def data_treatment(csv_data):
         # Calculo de data mes final do pagamento
         date_str = line[1]
         data_final = datetime.strptime(date_str, '%d/%m/%Y').date()
-        data_final = (data_final + relativedelta(months=int(mes)))
+        data_padrao = datetime.strptime(date_str, '%d/%m/%Y').date()
+        data_padrao = (data_padrao + relativedelta(months=int(mes)-1))
 
         # Criação de uma lista com dicionarios de todos os pagamentos
+        if mes > 1:
+            for m in range(mes):
 
-        treat_data = {
-            'id_cliente': line[0],
-            'data': line[1],
-            'valor_total': val_convertido,
-            'plano': plano,
-            'meses': mes,
-            'valor_mes': val,
-            'data_final_pag': data_final
-        }
-        list_data_treat.append(treat_data)
+                data_calculada = (data_final + relativedelta(months=int(m)))
+
+                treat_data = {
+                    'id_cliente': line[0],
+                    'data': data_calculada,
+                    'valor_total': val_convertido,
+                    'plano': plano,
+                    'meses': 1,
+                    'valor_mes': val,
+                    'data_final_pag': data_padrao
+                }
+                list_data_treat.append(treat_data)
+        else:
+
+            treat_data = {
+                'id_cliente': line[0],
+                'data': data_final,
+                'valor_total': val_convertido,
+                'plano': plano,
+                'meses': mes,
+                'valor_mes': val,
+                'data_final_pag': data_padrao
+            }
+            list_data_treat.append(treat_data)
     return list_data_treat
 
 
