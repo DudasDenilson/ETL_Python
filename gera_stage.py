@@ -12,25 +12,31 @@ listadados = csv_class.data_treatment(datas)
 url = 'https://demo4417994.mockable.io/clientes/'
 listajson = json_class.get_online_json(url)
 list_data_treat = []
+contador_cliente = 0
 for r_csv in listadados:
     for r_json in listajson:
         if r_csv["id_cliente"] == r_json["id"]:
             treat_data = {}
-
+            #if r_csv.get("id_cliente") == 1030:
+                #print(f' atual : {r_csv.get("valor_mes")} -> next : {r_csv.get("valor_mes").__next__()}')
+            #    print(r_csv.__getitem__("valor_mes"))
             treat_data = {
-                'id_cliente': r_csv["id_cliente"],
-                'data_pagamento': r_csv["data"],
-                'valor_total': r_csv["valor_total"],
-                'plano': r_csv["plano"],
-                'meses': r_csv["meses"],
-                'valor_mes': r_csv["valor_mes"],
-                'empresa_nome' : r_json["nome"],
-                'cidade':r_json["cidade"],
-                'estado':r_json["estado"],
-                'segmento':r_json["segmento"],
-                'data_pagamento_fim': r_csv["data_final_pag"]
+                'id_cliente': r_csv.get("id_cliente"),
+                'data_pagamento': r_csv.get("data"),
+                'valor_total': r_csv.get("valor_total"),
+                'qtd_pagamento' : 0,
+                'plano': r_csv.get("plano"),
+                'meses': r_csv.get("meses"),
+                'valor_mes': r_csv.get("valor_mes"),
+                'empresa_nome' : r_json.get("nome"),
+                'cidade':r_json.get("cidade"),
+                'estado':r_json.get("estado"),
+                'segmento':r_json.get("segmento"),
+                'data_pagamento_fim': r_csv.get("data_final_pag")
             }
             list_data_treat.append(treat_data)
+            
+
 
 
 

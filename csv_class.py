@@ -21,19 +21,18 @@ def data_treatment(csv_data):
         plano = fullplano[:len(fullplano) - 2]
 
         # Busca os dados de quantos meses foram pagos
-        mes = fullplano[len(fullplano) - 1:]
-        mes = int(mes)
+        mes = int(fullplano[len(fullplano) - 1:])
 
         # Calculo de valor do produto
         valor = line[2].replace(',', '.').replace(' ', '')
         val_convertido = valor[2:].strip()
-        val = float(val_convertido) / int(mes)
+        val = float(val_convertido) / mes
 
         # Calculo de data mes final do pagamento
         date_str = line[1]
         data_final = datetime.strptime(date_str, '%d/%m/%Y').date()
         data_padrao = datetime.strptime(date_str, '%d/%m/%Y').date()
-        data_padrao = (data_padrao + relativedelta(months=int(mes)-1))
+        data_padrao = (data_padrao + relativedelta(months=mes-1))
 
         # Criação de uma lista com dicionarios de todos os pagamentos
         if mes > 1:
@@ -62,7 +61,10 @@ def data_treatment(csv_data):
                 'valor_mes': val,
                 'data_final_pag': data_padrao
             }
+
             list_data_treat.append(treat_data)
+
+    print('Finalizado data_treat')
     return list_data_treat
 
 
@@ -72,6 +74,7 @@ def write_csv(lista_dict_origem, caminho_csv_destino):
     for r in colunas:
         array_colunas.append(r)
     df = DataFrame(lista_dict_origem, columns=array_colunas)
+    df = df.sort_values(by=[array_colunas[0], array_colunas[1]])
     export_csv = df.to_csv(caminho_csv_destino, index=None, header=True)
 
 
