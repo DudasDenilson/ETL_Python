@@ -1,9 +1,9 @@
-from datetime import date, datetime
-from dateutil.relativedelta import relativedelta
+import json_class
+import csv_class
 
-date_time_str = '02-01-2019'
-data = datetime.strptime(date_time_str, '%d-%m-%Y')
 
-six_months = data.date() + relativedelta(months=+6)
+url = 'https://demo4417994.mockable.io/clientes/'
+lista_json = json_class.get_online_json(url)
 
-print(six_months)
+data = json_class.treat_json(lista_json)
+print(data)

@@ -1,20 +1,6 @@
 import csv_class
 import json_class
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 local = '/home/denilson/Downloads/pagamentos.csv'
 # url_csv = 'https://doc-08-3o-docs.googleusercontent.com/docs/securesc/itgof2bk0rq38g93e3k3bbkt36b80r5j/bukdvqqreor3faj6mco62fgk5cbu3mcn/1571716800000/04105005953058485704/02359347683867043271/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw?e=download'
 datas = csv_class.csv_etl.import_csv(local)

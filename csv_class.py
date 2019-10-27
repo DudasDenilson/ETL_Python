@@ -6,9 +6,14 @@ from datetime import datetime, timedelta, date
 
 # funcao responsavel pela leitura do arquivo csv
 def import_csv(url_local):
-    print('Inicializando Importação')
-    data = pd.read_csv(url_local, sep=",")
-    print('Finalizado Importação')
+    data = None
+    try:
+        print('Inicializando Importação')
+        data = pd.read_csv(url_local, sep=",")
+        print('Finalizado Importação')
+    except:
+        print('Falha ao abrir arquivo')
+
     return data
 
 
@@ -71,17 +76,24 @@ def data_treatment(csv_data):
 
 
 def write_csv(lista_dict_origem, caminho_csv_destino):
-    print('Iniciado gravação do CSV')
-    # Obtem as keys da lista passada por parametro
-    colunas = lista_dict_origem[0].keys()
-    array_colunas = []
-    # Cria um array com todas as colunas
-    for r in colunas:
-        array_colunas.append(r)
-    # Efetua a criação do dataframe com base nas colunas obtidas
-    df = DataFrame(lista_dict_origem, columns=array_colunas)
-    # Classifica os dados do CSV nas colunas 0 e 1
-    df = df.sort_values(by=[array_colunas[0], array_colunas[1]])
-    # Cria o CSV
-    export_csv = df.to_csv(caminho_csv_destino, index=None, header=True)
-    print('Processo de scrita finalizado')
+    sucess = False
+    try:
+        print('Iniciado gravação do CSV')
+        # Obtem as keys da lista passada por parametro
+        colunas = lista_dict_origem[0].keys()
+        array_colunas = []
+        # Cria um array com todas as colunas
+        for r in colunas:
+            array_colunas.append(r)
+        # Efetua a criação do dataframe com base nas colunas obtidas
+        df = DataFrame(lista_dict_origem, columns=array_colunas)
+        # Classifica os dados do CSV nas colunas 0 e 1
+        df = df.sort_values(by=[array_colunas[0], array_colunas[1]])
+        # Cria o CSV
+        export_csv = df.to_csv(caminho_csv_destino, index=None, header=True)
+        sucess = True
+        print('Processo de scrita finalizado')
+    except:
+        print('Falha gravacao CSV')
+
+    return sucess
