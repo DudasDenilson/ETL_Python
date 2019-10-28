@@ -3,6 +3,11 @@ import json_class
 
 
 def gera_csv_stage(lista_dados_json, lista_dados_csv):
+    """
+    Função responsavel por efetuar o join entre os dados recebidos por meio do csv e do json, gerando uma lista de
+    dicionarios. Recebe como parametros uma lista de dicionarios json e uma lista de dicionarios csv, tendo como
+    retorno uma nova lista de dicionarios.
+    """
     # Cria uma lista para armazenar os dados processados
     print('Iniciado tratamento stage')
     list_data_treat = []

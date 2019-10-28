@@ -1,30 +1,58 @@
-import pandas as pd
-from io import StringIO
-import requests
-from csv_class import *
-import tests_data
+import google
+from google.cloud import bigquery
+import google.auth
+from google.oauth2 import service_account
 
-#url = 'https://demo4417994.mockable.io/clientes/'
-csv = ' https://drive.google.com/uc?export=download&id=1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw'
+# Create credentials with Drive & BigQuery API scopes.
+# Both APIs must be enabled for your project before running this code.
+scopes=[
+        "https://www.googleapis.com/auth/drive",
+        "https://www.googleapis.com/auth/bigquery",
+    ]
+credentials = service_account.Credentials.from_service_account_file('/home/denilson/Documents/Projeto1-4780fa1a64d4.json', scopes=scopes)
+project_id = 'projeto1-256320'
+
+#credentials, project = google.auth.default(
+#    scopes=[
+#        "https://www.googleapis.com/auth/drive",
+#        "https://www.googleapis.com/auth/bigquery",
+#    ]
+#)
+
+# TODO(developer): Construct a BigQuery client object.
+client = bigquery.Client(credentials=credentials, project=project_id)
+
+# Configure the external data source and query job.
+external_config = bigquery.ExternalConfig("GOOGLE_SHEETS")
+
+# Use a shareable link or grant viewing access to the email address you
+# used to authenticate with BigQuery (this example Sheet is public).
+sheet_url = (
+    "https://docs.google.com/spreadsheets"
+    "/d/1i_QCL-7HcSyUZmIbP9E6lO_T5u3HnpLe7dnpHaijg_E/edit?usp=sharing"
+)
+external_config.source_uris = [sheet_url]
+external_config.schema = [
+    bigquery.SchemaField("name", "STRING"),
+    bigquery.SchemaField("post_abbr", "STRING"),
+]
+external_config.options.skip_leading_rows = 1  # Optionally skip header row.
+external_config.options.range = (
+    "us-states!A20:B49"
+)  # Optionally set range of the sheet to query from.
+table_id = "us_states"
+job_config = bigquery.QueryJobConfig()
+job_config.table_definitions = {table_id: external_config}
 
 
-result = data_treatment(import_csv(tests_data.LOCAL_VALID_PART_CSV))
-for val in result:
-    count = 0
-    for k in val.keys():
-        print(k)
-        assert 'id_cliente' in k
-        count +=1
-        if count == 1:
-           break
-    break
+# Example query to find states starting with "W".
+sql = 'SELECT * FROM `{}` WHERE name LIKE "W%"'.format(table_id)
+query_job = client.query(sql, job_config=job_config)  # Make an API request.
 
-
-#orig_url='https://drive.google.com/file/d/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw/view?usp=sharing'
-
-#file_id = orig_url.split('/')[-2]
-#dwn_url='https://drive.google.com/uc?export=download&id=' + file_id
-#url = requests.get(dwn_url).text
-#csv_raw = StringIO(url)
-#dfs = pd.read_csv(dwn_url)
-#print(dfs.head())
+# Wait for the query to complete.
+w_states = list(query_job)
+print(
+    "There are {} states with names starting with W in the selected range.".format(
+        len(w_states)
+    )
+)

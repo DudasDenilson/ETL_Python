@@ -3,6 +3,9 @@ import json
 
 
 def treat_json(data):
+    """
+    Função responsável por receber um response json e retornar uma lista de dicionarios.
+    """
     list_data_treat = []
 
     try:
@@ -25,6 +28,10 @@ def treat_json(data):
 
 
 def get_online_json(url):
+    """
+    Função efetua a obtenção do arquivo json por meio de request. Recebe como parametro de entrada uma Url e retorna um
+    request json
+    """
     response_json = None
     try:
         request = requests.get(url, timeout=15)
@@ -37,6 +44,10 @@ def get_online_json(url):
 
 # Funcao criada para usar json local
 def get_local_json(caminho):
+    """
+    Função efetua a obtenção do arquivo json que se encontram locais. Recebe como parametro o local do arquivo e retorna
+    um json
+    """
     data = None
     try:
         treat_data = {}

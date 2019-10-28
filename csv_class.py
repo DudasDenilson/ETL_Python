@@ -5,12 +5,11 @@ from datetime import datetime, timedelta, date
 
 
 def import_csv(local):
-    '''
+    """
     Função responsavel pela importação do arquivo csv, recebendo como parametro local onde o arquivo se encontra,
-    podendo este ser uma URl ou local na maquina fisica
-    :param local:
-    :return:
-    '''
+    podendo este ser uma URl ou local na maquina fisica, tendo como retorno um panda dataframe
+    """
+
     data = None
     try:
         print('Inicializando Importação')
@@ -24,6 +23,10 @@ def import_csv(local):
 
 # funcao responsavel pelo tratamentos dos dados do arquivo csv
 def data_treatment(csv_data):
+    """
+    Função criada para efetuar o tratamento de dados do arquivo dataframe recebido. Possui como parametro de entrada o
+    dataframe e como retorno uma lista de dicionarios.
+    """
     print('Iniciando tratamento de dados CSV')
     treat_data = {}
     list_data_treat = []
@@ -84,6 +87,10 @@ def data_treatment(csv_data):
 
 
 def write_csv(lista_dict_origem, caminho_csv_destino):
+    """
+    Função responsavel por escrever a lista de dicionarios recebidos em arquivo csv, recebendo como dados a lista de dicionario e o caminho
+    onde sera escrito os csv.
+    """
     sucess = False
     try:
         print('Iniciado gravação do CSV')
@@ -108,6 +115,10 @@ def write_csv(lista_dict_origem, caminho_csv_destino):
 
 
 def treat_url_google_drive_file(url):
+    """
+    Função responsável pelo tratamentos de urls do google drive, para que seja possivel o acesso ao arquivo. Recebe a
+    url compartilhada do arquivo e transforma em Url de Download.
+    """
     dwn_url = None
     try:
         file_id = url.split('/')[-2]
