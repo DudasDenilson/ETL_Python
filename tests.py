@@ -48,7 +48,14 @@ class CSVTreatment(unittest.TestCase):
 
     def test_treat_data_with_valid_csv(self):
         empty_list = []
+        count = 0
         result = data_treatment(import_csv(treat_url_google_drive_file(tests_data.URL_VALID_GOOGLE_DRIVE)))
+        for val in result:
+            for keys in val.keys():
+                assert 'id_cliente' in keys
+                if count == 1:
+                    break
+            break
         self.assertNotEqual(result, empty_list)
 
     def test_write_csv_with_valid_local(self):

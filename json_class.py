@@ -19,7 +19,8 @@ def treat_json(data):
 
         return list_data_treat
 
-    except:
+    except Exception as e:
+        print(e)
         return list_data_treat
 
 
@@ -28,8 +29,8 @@ def get_online_json(url):
     try:
         request = requests.get(url, timeout=15)
         response_json = request.json()
-    except:
-        print("Falha no request ao arquivo json")
+    except Exception as e:
+        print("Falha no request ao arquivo json" + e)
 
     return response_json
 
@@ -43,7 +44,7 @@ def get_local_json(caminho):
         with open(caminho, "r") as read_file:
             data = json.load(read_file)
 
-    except:
-        print('Falha ao abrir json local')
+    except Exception as e:
+        print('Falha ao abrir json local' + e)
 
     return data

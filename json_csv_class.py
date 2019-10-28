@@ -12,7 +12,7 @@ def gera_csv_stage(lista_dados_json, lista_dados_csv):
             # Percorre a lista do json
             for r_json in lista_dados_json:
                 # Efetua o join entre as duas listas
-                if r_csv["id_cliente"] == r_json["id"]:
+                if r_csv.get("id_cliente") == r_json.get("id"):
                     treat_data = {
                         'id_cliente': r_csv.get("id_cliente"),
                         'data_pagamento': r_csv.get("data"),
@@ -27,7 +27,7 @@ def gera_csv_stage(lista_dados_json, lista_dados_csv):
                         'data_pagamento_fim': r_csv.get("data_final_pag")
                     }
                     list_data_treat.append(treat_data)
-    except:
-        print('Falha no tratamento da stage')
+    except Exception as e:
+        print('Falha no tratamento da stage' + e)
 
     return list_data_treat
