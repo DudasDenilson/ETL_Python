@@ -20,7 +20,7 @@ def treat_json(data):
         return list_data_treat
 
     except:
-        return None
+        return list_data_treat
 
 
 def get_online_json(url):
