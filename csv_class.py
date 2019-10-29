@@ -12,11 +12,11 @@ def import_csv(local):
 
     data = None
     try:
-        print('Inicializando Importação')
+        print('Inicializando Importação csv')
         data = pd.read_csv(local, sep=",")
-        print('Finalizado Importação')
+        print('Finalizado Importação csv')
     except Exception as e:
-        print('Falha ao abrir arquivo' + e)
+        print('Falha ao abrir arquivo csv ' + e)
 
     return data
 
@@ -28,7 +28,6 @@ def data_treatment(csv_data):
     dataframe e como retorno uma lista de dicionarios.
     """
     print('Iniciando tratamento de dados CSV')
-    treat_data = {}
     list_data_treat = []
     try:
 

@@ -2,7 +2,7 @@ import unittest
 from json_class import *
 from json_csv_class import *
 from csv_class import *
-import tests_data
+import tests_dir.tests_data as tests_data
 
 
 class JSONTreatment(unittest.TestCase):
