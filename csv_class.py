@@ -16,7 +16,7 @@ def import_csv(local):
         data = pd.read_csv(local, sep=",")
         print('Finalizado Importação csv')
     except Exception as e:
-        print('Falha ao abrir arquivo csv ')
+        print('Falha ao abrir arquivo csv ' + str(e))
 
     return data
 
@@ -79,7 +79,7 @@ def data_treatment(csv_data):
 
                 list_data_treat.append(treat_data)
     except Exception as e:
-        print('Falha ao tratar csv')
+        print('Falha ao tratar csv' + str(e))
 
     print('Finalizado tratamento CSV')
     return list_data_treat
@@ -108,7 +108,7 @@ def write_csv(lista_dict_origem, caminho_csv_destino):
         sucess = True
         print('Processo de escrita finalizado')
     except Exception as e:
-        print('Falha gravacao CSV')
+        print('Falha gravacao CSV ' + str(e))
 
     return sucess
 
@@ -126,6 +126,6 @@ def treat_url_google_drive_file(url):
         else:
             dwn_url = 'https://drive.google.com/uc?export=download&id=' + file_id
     except Exception as e:
-        print('Falha ao tratar URL')
+        print('Falha ao tratar URL : ' + str(e))
 
     return dwn_url

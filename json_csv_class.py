@@ -29,6 +29,6 @@ def gera_csv_stage(lista_dados_json, lista_dados_csv):
                     }
                     list_data_treat.append(treat_data)
     except Exception as e:
-        print('Falha no tratamento da stage' + e)
+        print('Falha no tratamento da stage' + str(e))
 
     return list_data_treat

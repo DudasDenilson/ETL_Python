@@ -10,4 +10,4 @@ URL_VALID_GOOGLE_DRIVE ='https://drive.google.com/file/d/1GlYrv7ex0ClxQwQ0NvJ4GT
 LOCAL_DESTINO_CSV_VALID = '/home/denilson/export.csv'
 LOCAL_DESTINO_CSV_INVALID = '/home1/denilson/export.csv'
 CSV_URL_GOOGLE_VALID = 'https://drive.google.com/file/d/1GlYrv7ex0ClxQwQ0NvJ4GTUGre7s8vtw/view?usp=sharing'
-CSV_URL_GOOGLE_INVALID = 'https://drive.google.com'
+CSV_URL_GOOGLE_INVALID = ''
