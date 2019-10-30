@@ -50,8 +50,6 @@ def get_local_json(caminho):
     """
     data = None
     try:
-        treat_data = {}
-        list_data_treat = []
         with open(caminho, "r") as read_file:
             data = json.load(read_file)
 

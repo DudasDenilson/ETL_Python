@@ -1,7 +1,7 @@
+from datetime import datetime
 import pandas as pd
-from pandas import DataFrame
 from dateutil.relativedelta import relativedelta
-from datetime import datetime, timedelta, date
+from pandas import DataFrame
 
 
 def import_csv(local):
