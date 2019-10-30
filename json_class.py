@@ -37,7 +37,7 @@ def get_online_json(url):
         request = requests.get(url, timeout=15)
         response_json = request.json()
     except Exception as e:
-        print("Falha no request ao arquivo json" + e)
+        print("Falha no request ao arquivo json")
 
     return response_json
 
@@ -54,6 +54,6 @@ def get_local_json(caminho):
             data = json.load(read_file)
 
     except Exception as e:
-        print('Falha ao abrir json local' + e)
+        print('Falha ao abrir json local')
 
     return data

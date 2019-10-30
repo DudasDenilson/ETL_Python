@@ -2,7 +2,7 @@ import unittest
 from json_class import *
 from json_csv_class import *
 from csv_class import *
-import tests_dir.tests_data as tests_data
+import testsdata.tests_data as tests_data
 
 
 class JSONTreatment(unittest.TestCase):
@@ -53,6 +53,7 @@ class CSVTreatment(unittest.TestCase):
         for val in result:
             for keys in val.keys():
                 assert 'id_cliente' in keys
+                count += 1
                 if count == 1:
                     break
             break
@@ -67,6 +68,14 @@ class CSVTreatment(unittest.TestCase):
         result = write_csv(data_treatment(import_csv(tests_data.LOCAL_VALID_FULL_CSV)),
                            tests_data.LOCAL_DESTINO_CSV_INVALID)
         self.assertNotEqual(result, True)
+
+    def test_treat_url_google_drive_with_valid_url(self):
+        result = treat_url_google_drive_file(tests_data.CSV_URL_GOOGLE_VALID)
+        self.assertIsNotNone(result)
+
+    def test_treat_url_google_drive_with_invalid_url(self):
+        result = treat_url_google_drive_file(tests_data.CSV_URL_GOOGLE_INVALID)
+        self.assertEqual(result, None)
 
 
 class StageTreatment(unittest.TestCase):
