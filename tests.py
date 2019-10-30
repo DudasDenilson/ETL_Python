@@ -39,11 +39,7 @@ class CSVTreatment(unittest.TestCase):
         self.assertIsNone(result)
 
     def test_get_csv_with_valid_url(self):
-        result = import_csv(tests_data.LOCAL_VALID_PART_CSV)
-        self.assertIsNotNone(result)
-
-    def test_treat_url_with_valid_url(self):
-        result = treat_url_google_drive_file(tests_data.URL_VALID_GOOGLE_DRIVE)
+        result = import_csv(treat_url_google_drive_file(tests_data.CSV_URL_GOOGLE_VALID))
         self.assertIsNotNone(result)
 
     def test_treat_data_with_valid_csv(self):
@@ -82,7 +78,8 @@ class StageTreatment(unittest.TestCase):
     def test_treat_stage_with_valid_data(self):
         empty_list = []
         result = gera_csv_stage(treat_json(get_online_json(tests_data.URL_JSON_VALID)),
-                                data_treatment(import_csv(tests_data.LOCAL_VALID_FULL_CSV)))
+                                data_treatment(
+                                    import_csv(treat_url_google_drive_file(tests_data.CSV_URL_GOOGLE_VALID))))
         self.assertNotEqual(result, empty_list)
 
 
