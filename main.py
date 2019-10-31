@@ -17,6 +17,6 @@ if __name__ == '__main__':
     sucesso = cs.write_csv(LISTA_DADOS_STAGE, DIR_DEST_CSV)
 
     if sucesso:
-        print('Sucesso na geração do arquivo csv de STAGE')
+        print('Created CSV file Stage')
     else:
-        print('Falha ao criar arquivo csv STAGE')
+        print('Create CSV Stage file failed')

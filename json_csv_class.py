@@ -1,18 +1,18 @@
 def gera_csv_stage(lista_dados_json, lista_dados_csv):
     """
-    Função responsavel por efetuar o join entre os dados recebidos por meio do csv e do json, gerando uma lista de
-    dicionarios. Recebe como parametros uma lista de dicionarios json e uma lista de dicionarios csv, tendo como
-    retorno uma nova lista de dicionarios.
+    Function responsible for joining the data received through csv and json, generating a list of
+    dictionaries. It receives as parameters a list of json dictionaries and a list of csv dictionaries, having as
+    I return a new list of dictionaries.
     """
-    # Cria uma lista para armazenar os dados processados
-    print('Iniciado tratamento stage')
+    # Create a list to store the processed data.
+    print('Starting Stage treatment')
     list_data_treat = []
     try:
-        # Percorre a lista do csv
+        # Browse csv list
         for r_csv in lista_dados_csv:
-            # Percorre a lista do json
+            # Browse json list
             for r_json in lista_dados_json:
-                # Efetua o join entre as duas listas
+                # Join list using id
                 if r_csv.get("id_cliente") == r_json.get("id"):
                     treat_data = {
                         'id_cliente': r_csv.get("id_cliente"),
@@ -29,6 +29,6 @@ def gera_csv_stage(lista_dados_json, lista_dados_csv):
                     }
                     list_data_treat.append(treat_data)
     except Exception as e:
-        print('Falha no tratamento da stage' + str(e))
+        print('Treatment Stage failed ' + str(e))
 
     return list_data_treat
